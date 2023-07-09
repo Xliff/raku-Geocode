@@ -1,0 +1,8 @@
+prefix=Geocode
+modules=
+lib=geocode
+call_prefix=
+include-directory=/usr/src/geocode-glib/geocode-glib
+backups=backup,bitbucket,google-backup,azure-backup,hut
+build_exclude=
+struct-prefix=
