@@ -17,6 +17,16 @@ role Geocode::Roles::Backend {
 
   has GeocodeBackend $!gb is implementor;
 
+  method roleInit_GeocodeBackend {
+    self.roleInit-GeocodeBackend;
+  }
+  method roleInit-GeocodeBackend {
+    return Nil if $!gb;
+
+    my \i = findProperImplementor(self.^attributes);
+    $!gb = cast( GeocodeBackend, i.get_value(self) )
+  }
+
   method Geocode::Raw::Definitions::GeocodeBackend
   { $!gb }
   method GeocodeBackend
