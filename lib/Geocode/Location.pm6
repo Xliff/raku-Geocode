@@ -15,7 +15,7 @@ our subset GeocodeLocationAncestry is export of Mu
 
 class Geocode::Location {
   also does GLib::Roles::Object;
-  
+
   has GeocodeLocation $!gl is implementor;
 
   submethod BUILD ( :$geocode-location ) {
@@ -244,8 +244,10 @@ class Geocode::Location {
     $rv;
   }
 
-  method to_uri (GeocodeLocationURIScheme() $scheme) is also<to-uri> {
-    geocode_location_to_uri($!gl, $scheme);
+  method to_uri (Int() $scheme) is also<to-uri> {
+    my GeocodeLocationURIScheme $s = $scheme;
+
+    geocode_location_to_uri($!gl, $s);
   }
 
 }
