@@ -9,10 +9,10 @@ use Geocode::Raw::Forward;
 
 use GLib::GList;
 use GLib::HashTable;
+use Geocode::Place;
 
 use GLib::Roles::Implementor;
 use GLib::Roles::Object;
-
 
 our subset GeocodeForwardAncestry is export of Mu
   where GeocodeForward | GObject;
@@ -67,13 +67,13 @@ class Geocode::Forward {
     samewith( GLib::HashTable.new(%params) );
   }
   multi method new_for_params (GHashTable() $params) {
-    my $geocode-forward = geocode_forward_new_for_params($!gf, $params);
+    my $geocode-forward = geocode_forward_new_for_params($params);
 
     $geocode-forward ?? self.bless( :$geocode-forward ) !! Nil;
   }
 
   method new_for_string (Str() $str) is also<new-for-string> {
-    my $geocode-forward = geocode_forward_new_for_string($!gf, $str);
+    my $geocode-forward = geocode_forward_new_for_string($str);
 
     $geocode-forward ?? self.bless( :$geocode-forward ) !! Nil;
   }
