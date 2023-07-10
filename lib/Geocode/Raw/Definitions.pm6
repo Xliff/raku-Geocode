@@ -13,4 +13,5 @@ unit package Geocode::Raw::Definitions;
 
 constant geocode is export = 'geocode-glib-0.8',v0;
 
-class GeocodeIcon is repr<CPointer> does GLib::Roles::Pointers is export {}
+class GeocodeBackend is repr<CPointer> does GLib::Roles::Pointers is export {}
+class GeocodeIcon    is repr<CPointer> does GLib::Roles::Pointers is export {}
