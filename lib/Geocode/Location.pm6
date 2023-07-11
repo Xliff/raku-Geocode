@@ -54,7 +54,8 @@ class Geocode::Location {
     $o.ref if $ref;
     $o;
   }
-  multi method new (Num() $latitude, Num() $longitude, Num() $accuracy) {
+  # cw: Use a default of 2 meters for accuracy.
+  multi method new (Num() $latitude, Num() $longitude, Num() $accuracy = 2) {
     my gdouble ($lat, $long, $a) = ($latitude, $longitude, $accuracy);
 
     my $geocode-location = geocode_location_new($lat, $long, $a);
