@@ -12,6 +12,7 @@ use Geocode::Location;
 
 use GLib::Roles::Implementor;
 use GLib::Roles::Object;
+use GIO::Roles::Icon;
 
 our subset GeocodePlaceAncestry is export of Mu
   where GeocodePlace | GObject;
@@ -207,16 +208,16 @@ class Geocode::Place {
     );
   }
 
-  # Type: GeocodeIcon
+  # Type: GIcon
   method icon ( :$raw = False ) is rw  is g-property {
-    my $gv = GLib::Value.new( Geocode::Icon.get_type );
+    my $gv = GLib::Value.new( GIO::Icon.get_type );
     Proxy.new(
       FETCH => sub ($) {
         self.prop_get('icon', $gv);
         propReturnObject(
           $gv.object,
           $raw,
-          |Geocode::Icon.getTypePair
+          |GIO::Icon.getTypePair
         );
       },
       STORE => -> $,  $val is copy {
